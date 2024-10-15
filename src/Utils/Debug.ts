@@ -1,26 +1,42 @@
 class Debug {
-  public log: any;
-  public warn: any;
-  public error: any;
-  public info: any;
-  public assert: any;
-  public trace: any;
-  public time: any;
-  public timeEnd: any;
-  public group: any;
-  public groupEnd: any;
-  public clear: any;
-  public count: any;
+  public log: (message?: any, ...optionalParams: any[]) => void;
+  public warn: (message?: any, ...optionalParams: any[]) => void;
+  public error: (message?: any, ...optionalParams: any[]) => void;
+  public info: (message?: any, ...optionalParams: any[]) => void;
+  public assert: (condition?: boolean, message?: string, ...optionalParams: any[]) => void;
+  public trace: () => void;
+  public time: (label?: string) => void;
+  public timeEnd: (label?: string) => void;
+  public group: (label?: string) => void;
+  public groupEnd: () => void;
+  public clear: () => void;
+  public count: (label?: string) => void;
 
-  constructor(label: string = '', style='color: purple; font-weight: bold', prefix='CCHS') {
 
-    this.log = Function.prototype.bind.call(console.log, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.warn = Function.prototype.bind.call(console.warn, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.error = Function.prototype.bind.call(console.error, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.info = Function.prototype.bind.call(console.info, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.assert = Function.prototype.bind.call(console.assert, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.trace = Function.prototype.bind.call(console.trace, console, `[%c${prefix}: ${label}%c]`, style, '');
-    this.group = Function.prototype.bind.call(console.group, console, `[%c${prefix}: ${label}%c]`, style, '');
+  /**
+   * Wrapper for the Console
+   * 
+   * Usage: `const debug = new Debug('myLabel', 'color:red; font-weight: bold;', 'prfx', 'color: green;')`
+   * @param label 
+   * @param style 
+   * @param prefix 
+   * @param bracketStyle 
+  */
+  constructor(
+    label = '',
+    style = 'color: cadetblue; font-weight: bold',
+    prefix = 'CCHS',
+    bracketStyle = `color: purple; font-weight: bold`
+  ) {
+    this.log = Function.prototype.bind.call(console.log, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.warn = Function.prototype.bind.call(console.warn, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.error = Function.prototype.bind.call(console.error, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.info = Function.prototype.bind.call(console.info, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.assert = Function.prototype.bind.call(console.assert, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.trace = Function.prototype.bind.call(console.trace, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
+    this.time = Function.prototype.bind.call(console.time, console);
+    this.timeEnd = Function.prototype.bind.call(console.timeEnd, console);
+    this.group = Function.prototype.bind.call(console.group, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.groupEnd = Function.prototype.bind.call(console.groupEnd, console);
     this.count = Function.prototype.bind.call(console.count, console, label);
     this.clear = Function.prototype.bind.call(console.clear, console);

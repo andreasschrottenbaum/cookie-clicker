@@ -7,5 +7,6 @@
 .cchs-plugins-menu {
   label {
     display: block;
+    line-height: 1.6;
   }
 }

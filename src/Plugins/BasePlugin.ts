@@ -11,10 +11,6 @@ abstract class BasePlugin {
 
   protected Debug!: Debug
 
-  constructor() {
-    this.init()
-  }
-
   init() {
     this.Debug = new Debug(this.name)
   }
