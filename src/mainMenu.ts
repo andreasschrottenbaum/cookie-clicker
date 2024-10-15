@@ -31,7 +31,7 @@ class MainMenu {
     modMenuEl.append(headline)
 
     const pluginListEl = document.createElement('div')
-    pluginListEl.classList.add('ccs-plugins')
+    pluginListEl.classList.add('ccs-plugins-menu')
     modMenuEl.append(pluginListEl)
   }
 
@@ -40,7 +40,7 @@ class MainMenu {
    */
   private fillMenu() {
     const currentEntries = JSON.parse(localStorage.getItem(CCS_NAMESPACE) || '[]')
-    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-suite .ccs-plugins') as HTMLElement
+    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-suite .ccs-plugins-menu') as HTMLElement
 
     allPlugins.forEach(plugin => {
       const pluginLabel = document.createElement('label')

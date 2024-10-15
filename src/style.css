@@ -1,9 +1,10 @@
 /** Remove Ads **/
-#smallSupport, #support {
+#smallSupport,
+#support {
   display: none;
 }
 
-.ccs-plugins {
+.ccs-plugins-menu {
   label {
     display: block;
   }
