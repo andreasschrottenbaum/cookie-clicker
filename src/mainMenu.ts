@@ -1,15 +1,25 @@
 import { allPlugins } from './Plugins'
 import { BasePlugin } from './Plugins/BasePlugin'
+//@ts-ignore
+import Debug from './Utils/Debug'
 
-const CCS_NAMESPACE = 'cookie-clicker-suite-plugins'
+const CCHS_NAMESPACE = 'cookie-clicker-suite-plugins'
 
 class MainMenu {
   private intervals: Map<string, number> = new Map()
   private rootEl: HTMLElement
 
+  // private Debug: Debug
+
   constructor() {
+    // this.Debug = new Debug('Main Menu')
+
     this.rootEl = document.querySelector('#sectionRight') as HTMLElement
     
+    if (!this.rootEl) {
+      throw new Error('Could not attach Menu Element.\r\n\n This script only works on https://orteil.dashnet.org/cookieclicker/\r\n')
+    }
+
     this.createMenuElement()
     this.fillMenu()
   }
@@ -31,7 +41,7 @@ class MainMenu {
     modMenuEl.append(headline)
 
     const pluginListEl = document.createElement('div')
-    pluginListEl.classList.add('ccs-plugins-menu')
+    pluginListEl.classList.add('cchs-plugins-menu')
     modMenuEl.append(pluginListEl)
   }
 
@@ -39,8 +49,8 @@ class MainMenu {
    * Fills the Menu with the individual entries(plugins)
    */
   private fillMenu() {
-    const currentEntries = JSON.parse(localStorage.getItem(CCS_NAMESPACE) || '[]')
-    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-suite .ccs-plugins-menu') as HTMLElement
+    const currentEntries = JSON.parse(localStorage.getItem(CCHS_NAMESPACE) || '[]')
+    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-suite .cchs-plugins-menu') as HTMLElement
 
     allPlugins.forEach(plugin => {
       const pluginLabel = document.createElement('label')
@@ -88,11 +98,11 @@ class MainMenu {
     this.intervals.set(plugin.name, pluginInterval)
 
     // Update LocalStorage
-    const currentEntries = JSON.parse(localStorage.getItem(CCS_NAMESPACE) || '[]')
+    const currentEntries = JSON.parse(localStorage.getItem(CCHS_NAMESPACE) || '[]')
     if (!currentEntries.includes(plugin.name)) {
       currentEntries.push(plugin.name)
     }
-    localStorage.setItem(CCS_NAMESPACE, JSON.stringify(currentEntries))
+    localStorage.setItem(CCHS_NAMESPACE, JSON.stringify(currentEntries))
   }
 
   /**
@@ -110,9 +120,9 @@ class MainMenu {
     this.intervals.delete(plugin.name)
 
     // Update LocalStorage
-    let currentEntries = JSON.parse(localStorage.getItem(CCS_NAMESPACE) || '[]')
+    let currentEntries = JSON.parse(localStorage.getItem(CCHS_NAMESPACE) || '[]')
     currentEntries = currentEntries.filter((entry: string) => entry != plugin.name)
-    localStorage.setItem(CCS_NAMESPACE, JSON.stringify(currentEntries))
+    localStorage.setItem(CCHS_NAMESPACE, JSON.stringify(currentEntries))
   }
 }
 

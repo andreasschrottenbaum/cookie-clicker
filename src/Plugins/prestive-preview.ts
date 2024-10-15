@@ -5,8 +5,13 @@ class PrestigePreview extends BasePlugin {
   label = 'Prestige Preview'
   interval = 10000;
 
+  constructor() {
+    super()
+    this.init()
+  }
+
   run() {
-    console.log('CHECK PRESTIGE')
+    this.Debug.log('CHECK PRESTIGE')
   }
 }
 

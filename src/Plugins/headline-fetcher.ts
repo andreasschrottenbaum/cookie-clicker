@@ -5,16 +5,21 @@ class HeadlineFetcher extends BasePlugin {
   label = 'Headline Fetcher'
   interval = 1000
 
+  constructor() {
+    super()
+    this.init()
+  }
+
   start() {
-    console.log('booting up headline check')
+    this.Debug.log('starting headlines check')
   }
 
   run() {
-    console.log('check headlines')
+    this.Debug.log('check headlines')
   }
 
   stop() {
-    console.log('stopping headline check')
+    this.Debug.log('stopping headline check')
   }
 }
 
