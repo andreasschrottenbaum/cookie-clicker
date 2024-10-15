@@ -3,7 +3,6 @@ import { BasePlugin } from "./BasePlugin";
 class HeadlineFetcher extends BasePlugin {
   name = 'headline-fetcher';
   label = 'Headline Fetcher'
-
   interval = 1000
 
   start() {
