@@ -3,7 +3,6 @@ class Debug {
   public warn: (message?: any, ...optionalParams: any[]) => void;
   public error: (message?: any, ...optionalParams: any[]) => void;
   public info: (message?: any, ...optionalParams: any[]) => void;
-  public assert: (condition?: boolean, message?: string, ...optionalParams: any[]) => void;
   public trace: () => void;
   public time: (label?: string) => void;
   public timeEnd: (label?: string) => void;
@@ -11,7 +10,6 @@ class Debug {
   public groupEnd: () => void;
   public clear: () => void;
   public count: (label?: string) => void;
-
 
   /**
    * Wrapper for the Console
@@ -26,16 +24,15 @@ class Debug {
     label = '',
     style = 'color: cadetblue; font-weight: bold',
     prefix = 'CCHS',
-    bracketStyle = `color: purple; font-weight: bold`
+    bracketStyle = `color: brown; font-weight: bold`
   ) {
     this.log = Function.prototype.bind.call(console.log, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.warn = Function.prototype.bind.call(console.warn, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.error = Function.prototype.bind.call(console.error, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.info = Function.prototype.bind.call(console.info, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
-    this.assert = Function.prototype.bind.call(console.assert, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.trace = Function.prototype.bind.call(console.trace, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
-    this.time = Function.prototype.bind.call(console.time, console);
-    this.timeEnd = Function.prototype.bind.call(console.timeEnd, console);
+    this.time = Function.prototype.bind.call(console.time, console, label);
+    this.timeEnd = Function.prototype.bind.call(console.timeEnd, console, label);
     this.group = Function.prototype.bind.call(console.group, console, `%c[%c${prefix}: ${label}%c]`, bracketStyle, style, bracketStyle);
     this.groupEnd = Function.prototype.bind.call(console.groupEnd, console);
     this.count = Function.prototype.bind.call(console.count, console, label);

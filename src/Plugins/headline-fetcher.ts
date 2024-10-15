@@ -5,21 +5,9 @@ class HeadlineFetcher extends BasePlugin {
   label = 'Headline Fetcher'
   interval = 1000
 
-  constructor() {
-    super()
-    this.init()
-  }
-
-  start() {
-    this.Debug.log('starting headlines check')
-  }
-
   run() {
-    this.Debug.log('check headlines')
-  }
-
-  stop() {
-    this.Debug.log('stopping headline check')
+    const headline = document.querySelector('#commentsText1 span.fortune') as HTMLElement
+    headline?.click()
   }
 }
 
