@@ -3,7 +3,7 @@ import { BasePlugin } from './Plugins/BasePlugin'
 
 const CCS_NAMESPACE = 'cookie-clicker-suite-plugins'
 
-class Menu {
+class MainMenu {
   private intervals: Map<string, number> = new Map()
   private rootEl: HTMLElement
 
@@ -116,4 +116,4 @@ class Menu {
 
 }
 
-export default Menu
+export default MainMenu
