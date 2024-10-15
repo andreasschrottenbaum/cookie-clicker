@@ -26,7 +26,7 @@ class MainMenu {
     this.rootEl.insertBefore(modMenuEl, storeEl)
 
     const headline = document.createElement('h3')
-    headline.innerText = 'Cookie Clicker Suite'
+    headline.innerText = 'Helper Suite'
     headline.classList.add('title', 'zoneTitle')
     modMenuEl.append(headline)
 
@@ -55,6 +55,7 @@ class MainMenu {
         this.activatePlugin(plugin)
       }
 
+      // Register toggle handlers of the Plugin
       pluginCheckbox.addEventListener('change', () => {
         if (pluginCheckbox.checked) {
           this.activatePlugin(plugin)
