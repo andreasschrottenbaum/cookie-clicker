@@ -21,13 +21,13 @@ class Menu {
     const storeEl = document.querySelector('#store')
 
     const modMenuEl = document.createElement('div')
-    modMenuEl.classList.add('cookie-clicker-helper')
+    modMenuEl.classList.add('cookie-clicker-suite')
 
     this.rootEl.insertBefore(modMenuEl, storeEl)
 
     const headline = document.createElement('h3')
-    headline.innerText = 'Helper Suite'
-    headline.classList.add('title')
+    headline.innerText = 'Cookie Clicker Suite'
+    headline.classList.add('title', 'zoneTitle')
     modMenuEl.append(headline)
 
     const pluginListEl = document.createElement('div')
@@ -35,10 +35,12 @@ class Menu {
     modMenuEl.append(pluginListEl)
   }
 
-  // Fills the Menu with the individual entries(plugins)
+  /**
+   * Fills the Menu with the individual entries(plugins)
+   */
   private fillMenu() {
     const currentEntries = JSON.parse(localStorage.getItem(CCS_NAMESPACE) || '[]')
-    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-helper') as HTMLElement
+    const modMenuEl = this.rootEl.querySelector('.cookie-clicker-suite .ccs-plugins') as HTMLElement
 
     allPlugins.forEach(plugin => {
       const pluginLabel = document.createElement('label')

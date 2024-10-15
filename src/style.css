@@ -2,3 +2,9 @@
 #smallSupport, #support {
   display: none;
 }
+
+.ccs-plugins {
+  label {
+    display: block;
+  }
+}
