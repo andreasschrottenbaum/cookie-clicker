@@ -114,7 +114,6 @@ class MainMenu {
     currentEntries = currentEntries.filter((entry: string) => entry != plugin.name)
     localStorage.setItem(CCS_NAMESPACE, JSON.stringify(currentEntries))
   }
-
 }
 
 export default MainMenu

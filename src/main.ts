@@ -1,15 +1,15 @@
-import Menu from './mainMenu'
+import MainMenu from './mainMenu'
 
 import './style.css'
 
-// Placement of the Output
-new Menu()
+// Create the Main Menu
+new MainMenu()
+
+// Get CSS
+const cssRequest = await fetch(`${import.meta.env.VITE_DIST_LOCATION}/index.css`)
+const cssContent = await cssRequest.text()
 
 // Inject CSS
-const cssRequest = await fetch(`${import.meta.env.VITE_DIST_LOCATION}/index.css`)
-const css = await cssRequest.text()
-
 const styleEl = document.createElement('style')
-styleEl.innerText = css
-
+styleEl.innerText = cssContent
 document.body.append(styleEl)
